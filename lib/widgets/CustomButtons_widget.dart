@@ -5,9 +5,6 @@ class CustomButtons {
 
   CustomButtons(this.context);
 
-
-
-
   Widget myRaisedButton(String texto, Function callback) => RaisedButton(
       textColor: Colors.white,
       hoverColor: Colors.blueGrey,
