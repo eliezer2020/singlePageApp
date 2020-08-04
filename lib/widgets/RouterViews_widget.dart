@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:single_page_test/views/Default_view.dart';
 import 'package:single_page_test/views/Final_view.dart';
-import 'package:single_page_test/views/Home_view.dart';
+import 'package:single_page_test/views/Register_view.dart';
 
 Widget routerViews(int indexPage) {
   switch (indexPage) {
@@ -10,7 +10,7 @@ Widget routerViews(int indexPage) {
       break;
 
     case 1:
-      return HomeView();
+      return RegisterView();
       break;
 
     case 2:

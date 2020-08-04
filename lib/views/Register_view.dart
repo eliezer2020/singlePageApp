@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:single_page_test/provider/user_provider.dart';
 
 import 'package:single_page_test/provider/viewcontroller_provider.dart';
 import 'package:single_page_test/widgets/CustomButtons_widget.dart';
 import 'package:provider/provider.dart';
 
-class HomeView extends StatelessWidget {
+class RegisterView extends StatelessWidget {
 //Form controllers
   final _formKey = new GlobalKey<FormState>();
   final _formUsername = new TextEditingController();
@@ -64,8 +65,17 @@ class HomeView extends StatelessWidget {
             ),
             CustomButtons(context).myFlatButton("continue", (){
               _formKey.currentState.validate();
-              if (_formKey.currentState.validate()) Provider.of<ViewController>(context
+              if (_formKey.currentState.validate()) {
+                //set user provider
+                Provider.of<UserProvider>(context, listen: false).nombre= _formUsername.text;
+                Provider.of<UserProvider>(context, listen: false).correo= _formEmail.text;
+
+
+
+                //push final page
+                Provider.of<ViewController>(context
               , listen: false).setView(2);
+              }
             }),
            
           ],
