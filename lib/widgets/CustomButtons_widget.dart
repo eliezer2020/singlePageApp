@@ -5,6 +5,8 @@ class CustomButtons {
 
   CustomButtons(this.context);
 
+
+  //button For Top Navigation Bar
   Widget myRaisedButton(String texto, Function callback) => RaisedButton(
       textColor: Colors.white,
       hoverColor: Colors.blueGrey,
@@ -17,4 +19,19 @@ class CustomButtons {
         borderRadius: BorderRadius.circular(10.0),
       ),
       onPressed: callback);
+
+
+//buton For Continue 
+Widget myFlatButton (String texto, Function callback) => FlatButton(
+                            child: Text(texto),
+                            color: Colors.blueGrey[200],
+                            hoverColor: Theme.of(context).primaryColor,
+                            onPressed: callback
+                          );
+
+
+
+
+
+
 }

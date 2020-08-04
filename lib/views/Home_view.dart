@@ -1,15 +1,76 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:single_page_test/provider/viewcontroller_provider.dart';
+import 'package:single_page_test/widgets/CustomButtons_widget.dart';
+import 'package:provider/provider.dart';
+
 class HomeView extends StatelessWidget {
+//Form controllers
+  final _formKey = new GlobalKey<FormState>();
+  final _formUsername = new TextEditingController();
+  final _formEmail = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Padding(
-          padding: EdgeInsets.all(30.0),
-          child: Center(
-            child: Text("homepage"),
-          )),
+      child: Container(
+        width: 480,
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            homeForm(context),
+          ],
+        ),
+      ),
     );
   }
+
+  Widget homeForm(BuildContext context) {
+   //Resolved with Provider,
+  //All widgets can modify View
+  
+
+    return Form(
+        key: _formKey,
+        autovalidate: false,
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+              controller: _formUsername,
+              decoration: InputDecoration(
+                //labelStyle: TextStyle(color: Colors.blueAccent),
+                labelText: "Ingrese nombre completo",
+              ),
+              validator: (String value) {
+                return (value.isEmpty) ? " Ingrese nombre " : null;
+              },
+            ),
+            TextFormField(
+              controller: _formEmail,
+              decoration: InputDecoration(
+                //labelStyle: TextStyle(color: Colors.blueAccent),
+                labelText: "Ingrese email",
+              ),
+              validator: (String value) {
+                return (!value.contains("@")) ? " Ingrese Email valido " : null;
+              },
+            ),
+            SizedBox(
+              height: 100,
+            ),
+            CustomButtons(context).myFlatButton("continue", (){
+              _formKey.currentState.validate();
+              if (_formKey.currentState.validate()) Provider.of<ViewController>(context
+              , listen: false).setView(2);
+            }),
+           
+          ],
+        ));
+  }
+
+
 }
