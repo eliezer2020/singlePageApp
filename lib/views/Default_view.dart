@@ -9,22 +9,20 @@ class DefaultView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-          padding: EdgeInsets.all(30.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CustomButtons(context).myFlatButton("       User login        ", (){
-                Provider.of<ViewController>(context
-              , listen: false).setView(1);
-              }),
-              CustomButtons(context).myFlatButton("Anonymously Login", (){
-                Provider.of<ViewController>(context
-              , listen: false).setView(2);
-              }),
-
-            ],
-          ),
-          ),
+        padding: EdgeInsets.all(30.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CustomButtons(context).myFlatButton("       User login        ",
+                () {
+              Provider.of<ViewController>(context, listen: false).setView(1);
+            }),
+            CustomButtons(context).myFlatButton("Anonymously Login", () {
+              Provider.of<ViewController>(context, listen: false).setView(2);
+            }),
+          ],
+        ),
+      ),
     );
   }
 }

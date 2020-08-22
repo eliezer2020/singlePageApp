@@ -31,9 +31,8 @@ class RegisterView extends StatelessWidget {
   }
 
   Widget homeForm(BuildContext context) {
-   //Resolved with Provider,
-  //All widgets can modify View
-  
+    //Resolved with Provider,
+    //All widgets can modify View
 
     return Form(
         key: _formKey,
@@ -63,24 +62,29 @@ class RegisterView extends StatelessWidget {
             SizedBox(
               height: 100,
             ),
-            CustomButtons(context).myFlatButton("continue", (){
-              _formKey.currentState.validate();
-              if (_formKey.currentState.validate()) {
-                //set user provider
-                Provider.of<UserProvider>(context, listen: false).nombre= _formUsername.text;
-                Provider.of<UserProvider>(context, listen: false).correo= _formEmail.text;
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CustomButtons(context).myFlatButton("back", () {
+                  Provider.of<ViewController>(context, listen: false).goBack();
+                }),
+                CustomButtons(context).myFlatButton("continue", () {
+                  _formKey.currentState.validate();
+                  if (_formKey.currentState.validate()) {
+                    //set user provider
+                    Provider.of<UserProvider>(context, listen: false).nombre =
+                        _formUsername.text;
+                    Provider.of<UserProvider>(context, listen: false).correo =
+                        _formEmail.text;
 
-
-
-                //push final page
-                Provider.of<ViewController>(context
-              , listen: false).setView(2);
-              }
-            }),
-           
+                    //push final page
+                    Provider.of<ViewController>(context, listen: false)
+                        .setView(2);
+                  }
+                }),
+              ],
+            ),
           ],
         ));
   }
-
-
 }
